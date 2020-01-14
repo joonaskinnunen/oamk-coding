@@ -1,0 +1,1 @@
+OAMK:n ohjelmistokehityksen koulutusohjelman ohjelmointiharjoitukset

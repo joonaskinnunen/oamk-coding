@@ -2,9 +2,9 @@
 
 int main()
 {
-    char merkit[] = "";
+    char merkit[100];
     printf("Syötä merkkijono, vähintään 4 merkkiä: ");
-    scanf("%s", &merkit);
+    scanf("%100s", merkit);
     for(int i = 0; i < 3; i++) {
         printf("%c", merkit[i]);
     }

@@ -10,6 +10,5 @@ int main()
     int remainder = i % x;
 
     (remainder == 0) ? printf("Jakojäännös on 0\n") : printf("Jakojäännös on %d\n", remainder);
-
     return 0;
 }

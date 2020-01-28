@@ -3,16 +3,13 @@
 int main()
 {
     int salanro = 0;
-    printf("Syota salanumero\n");
-    scanf("%d",&salanro);
-
     while (salanro != 17) {
-        printf("Väärä salanumero, syota uusi\n");
+        printf("Syötä salanumero: ");
         scanf("%d",&salanro);
-
+        if(salanro != 17) {
+            printf("Väärä salanumero\n");
+        }
     }
-    printf("Onnistunut valinta\n");
-
+    printf("Salanumero oikein!\n");
     return 0;
-
 }

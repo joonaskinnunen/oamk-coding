@@ -6,7 +6,11 @@ int main()
     while(i != 17) {
         printf("Syötä salanumero: ");
         scanf("%d", &i);
-        (i == 17) ? printf("Onneksi olkoon. Tiesit oikean salanumeron!\n") : printf("Salanumero väärin\n");
+        if(i == 17) {
+           break;
+        }
+        printf("Salanumero väärin\n");
     }
+    printf("Onneksi olkoon. Tiesit oikean salanumeron!\n");
     return 0;
 }

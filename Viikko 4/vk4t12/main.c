@@ -3,17 +3,16 @@
 int main()
 {
     int numbers[6];
-    int input, numOfEven = 0;
+    int sumOfEven = 0;
     for(int i = 0; i < 6; i++) {
         printf("Syötä luku: ");
-        scanf("%d", &input);
-        numbers[i] = input;
+        scanf("%d", &numbers[i]);
     }
     for(int i = 0; i < 6; i++) {
         if(numbers[i] % 2 == 0) {
-            numOfEven++;
+            sumOfEven++;
         }
     }
-    printf("Parillisia lukuja: %d\n", numOfEven);
+    printf("Parillisia lukuja: %d\n", sumOfEven);
     return 0;
 }

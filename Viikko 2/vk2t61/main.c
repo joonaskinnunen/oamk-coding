@@ -2,13 +2,12 @@
 
 int main()
 {
-    int number = 1;
-    int sum = 0;
+    int num = 1, sum = 0;
     printf("Ohjelma laskee syötettyjen lukujen summan. Voit lopettaa syöttämällä 0\n");
-    while(number != 0) {
+    while(num != 0) {
         printf("Syötä luku: ");
-        scanf("%d", &number);
-        sum += number;
+        scanf("%d", &num);
+        sum += num;
     }
     printf("Syötetyt luvut yhteensä: %d\n", + sum);
     return 0;

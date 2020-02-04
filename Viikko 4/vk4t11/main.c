@@ -2,8 +2,7 @@
 
 int main()
 {
-    float numbers[5];
-    float input;
+    float input, numbers[5];
     for(int i = 0; i < 5; i++) {
         printf("Syötä luku: ");
         scanf("%f", &input);

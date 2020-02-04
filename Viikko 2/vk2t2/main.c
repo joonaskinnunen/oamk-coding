@@ -2,8 +2,8 @@
 
 int main()
 {
-    float x = 0.0;
-    float y = 0.0;
+    float x;
+    float y;
     printf("Syötä ensimmäinen luku: ");
     scanf("%f", &x);
     printf("Syötä toinen luku: ");

@@ -21,11 +21,6 @@ int main()
     return 0;
 }
 
-struct point {
-   int x;
-   int y;
-};
-
 void askInfo(struct person p) {
     printf("Etunimi: ");
     scanf("%s", p.firstName);

@@ -31,7 +31,7 @@ const int A = 9;
     lukuina. Saatte itse muodostaa arvot 2-6 tuohon taulukkoon (binääri/heksalukujen
     kertauksena)
 */
-const uint8_t numerot[6] = {0x30, 0x6D, 0x79, 0x39, 0x5B, 0x5F}; // HUOM! korvaa luvut 2-6
+const uint8_t numerot[6] = {0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F}; // HUOM! korvaa luvut 2-6
 int buttonPreviousState = 0;
 
 void setup() {
@@ -85,7 +85,6 @@ void loop() {
   if (buttonPreviousState == 0 && nappiOnPainettu()) {
     kirjoitaLukuSevenSegmentille(satunnaisluku());
     buttonPreviousState = 1;
-    Serial.println(satunnaisluku());
   } else if (buttonPreviousState == 1 && !nappiOnPainettu()) {
     buttonPreviousState = 0;
   }

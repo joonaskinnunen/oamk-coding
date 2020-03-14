@@ -107,10 +107,6 @@ void waiting_second_number_handler()
   {
     printError();
     state = INITIAL_STATE;
-    value1 = 0;
-    value2 = 0;
-    decimalValue1 = 0;
-    decimalValue2 = 0;
   }
 
 
@@ -206,7 +202,7 @@ void loop() {
         {
           event = OPERAND_GIVEN;
           operand = code;
-        } else if (code == 44) {
+        } else if (code == 44 || code == 46) {
           event = COMMA_GIVEN;
         }
         else

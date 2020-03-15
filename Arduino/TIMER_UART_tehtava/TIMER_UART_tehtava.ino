@@ -75,7 +75,7 @@ void alustaTimer(void)
   TCCR1B |= (0 << CS12); //asetetaan kellon jako 8:lla
 
 
-  OCR1A = 20;        /* Vertailurekisteriin pitää osata laittaa oikea arvo
+  OCR1A = 200;        /* Vertailurekisteriin pitää osata laittaa oikea arvo
                          siten, että keskeytystahdiksi tulee haluttu 10000
                          keskeytystä/sekuntti. Eli kysytään siis sitä, ett
                          kuinka monta kertaa timeri, joka käy tahdilla

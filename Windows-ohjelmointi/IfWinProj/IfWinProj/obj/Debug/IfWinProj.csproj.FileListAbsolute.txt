@@ -1,0 +1,10 @@
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\bin\Debug\IfWinProj.exe.config
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\bin\Debug\IfWinProj.exe
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\bin\Debug\IfWinProj.pdb
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.csprojAssemblyReference.cache
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.Form1.resources
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.Properties.Resources.resources
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.csproj.GenerateResource.cache
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.csproj.CoreCompileInputs.cache
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.exe
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\IfWinProj\IfWinProj\obj\Debug\IfWinProj.pdb

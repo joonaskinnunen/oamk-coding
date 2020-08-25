@@ -1,0 +1,10 @@
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\bin\Debug\CalculatorWin.exe.config
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\bin\Debug\CalculatorWin.exe
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\bin\Debug\CalculatorWin.pdb
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.csprojAssemblyReference.cache
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.Form1.resources
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.Properties.Resources.resources
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.csproj.GenerateResource.cache
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.csproj.CoreCompileInputs.cache
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.exe
+C:\Users\Joonas\Koodit\Windows-ohjelmointi\CalculatorWin\CalculatorWin\obj\Debug\CalculatorWin.pdb

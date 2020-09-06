@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.shape.* ;
+import javafx.scene.input.* ;
 
 
 public class SinglePictureFX extends Application
@@ -68,14 +69,47 @@ public class SinglePictureFX extends Application
       Image picture_to_show = new Image( "gauguin_two_women_on_the_beach_1891.jpg" ) ;
 
       ImageView natural_size_view = new ImageView( picture_to_show ) ;
+      double picture_width = picture_to_show.getWidth();
+      double picture_height = picture_to_show.getHeight();
+      double scene_width = scene.getWidth();
+      double scene_height = scene.getHeight();
 
-      natural_size_view.setX( (scene.getWidth() - picture_to_show.getWidth()) / 2) ;
-      natural_size_view.setY( (scene.getHeight() - picture_to_show.getHeight()) / 2 ) ;
+      natural_size_view.setX( (scene.getWidth() - picture_width) / 2) ;
+      natural_size_view.setY( (scene.getHeight() - picture_height) / 2 ) ;
       
-      Rectangle picture_frame = new Rectangle(((int) Math.round(scene.getWidth() - picture_to_show.getWidth()) / 2) -10, ((int) Math.round(scene.getHeight() - picture_to_show.getHeight()) / 2) -10, picture_to_show.getWidth() + 20, picture_to_show.getHeight() + 20) ;
+      Rectangle picture_frame = new Rectangle(((int) Math.round(scene_width - picture_width) / 2) -10, ((int) Math.round(scene_height - picture_height) / 2) -10, picture_width + 20, picture_height + 20) ;
       picture_frame.setFill(Color.RED);
 
       group_for_imageviews.getChildren().addAll( picture_frame, natural_size_view) ;
+            
+      scene.setOnKeyPressed( ( KeyEvent event ) ->
+      {
+         KeyCode code_of_last_pressed_key = event.getCode() ;
+         if(code_of_last_pressed_key == KeyCode.UP) {
+             natural_size_view.setScaleY( natural_size_view.getScaleY() + 0.05 ) ;
+             picture_frame.setScaleY( natural_size_view.getScaleY() + 0.05 ) ;
+         } else if(code_of_last_pressed_key == KeyCode.DOWN) {
+             natural_size_view.setScaleY( natural_size_view.getScaleY() - 0.05 ) ;
+             picture_frame.setScaleY( natural_size_view.getScaleY() - 0.05 ) ;
+         } else if(code_of_last_pressed_key == KeyCode.LEFT) {
+             natural_size_view.setScaleX( natural_size_view.getScaleX() - 0.05 ) ;
+             picture_frame.setScaleX( natural_size_view.getScaleX() - 0.05 ) ;
+         } else if(code_of_last_pressed_key == KeyCode.RIGHT) {
+             natural_size_view.setScaleX( natural_size_view.getScaleX() + 0.05 ) ;
+             picture_frame.setScaleX( natural_size_view.getScaleX() + 0.05 ) ;
+         }
+      } ) ;
+      
+      scene.setOnKeyReleased( ( KeyEvent event ) ->
+      {
+         System.out.print( "\n KeyReleased." ) ;
+      } ) ;
+   
+      scene.setOnKeyTyped( ( KeyEvent event ) ->
+      {
+         System.out.print( "\n KeyTyped.   Character  =  " 
+                        +  event.getCharacter() ) ;
+      } ) ;
            
       stage.setScene( scene ) ;
       stage.show() ;

@@ -15,12 +15,13 @@ public class StepsFX extends Application
 
       Group group_for_steps = new Group() ;
 
-      Scene scene = new Scene( group_for_steps, 680, 480 ) ;
+      Scene scene = new Scene( group_for_steps, 960, 480 ) ;
 
       int step_size = 40 ;
+      int pyramid_step_size = 50;
       int number_of_steps_to_make = 7 ;
 
-      int step_position_x = 60 ;
+      int step_position_x = 100 ;
       int step_position_y = 320 ;
 
       for ( int step_counter = 0 ;
@@ -28,10 +29,10 @@ public class StepsFX extends Application
                 step_counter ++ )
       {
          Rectangle new_step = new Rectangle(
-                     step_position_x,
+                     step_position_x + step_counter * (pyramid_step_size / 2),
                      step_position_y,
-                     ( number_of_steps_to_make - step_counter ) * step_size,
-                     step_size ) ;
+                     ( number_of_steps_to_make - step_counter ) * pyramid_step_size,
+                     pyramid_step_size ) ;
          Color[] step_colors = { Color.DARKKHAKI, Color.AQUAMARINE, Color.LIGHTBLUE,
          Color.KHAKI, Color.ORANGE, Color.ROSYBROWN,
          Color.THISTLE, Color.TOMATO } ;
@@ -42,10 +43,10 @@ public class StepsFX extends Application
 
          group_for_steps.getChildren().add( new_step ) ;
 
-         step_position_y = step_position_y - step_size ;
+         step_position_y = step_position_y - pyramid_step_size ;
       }
 
-      step_position_x = 660 ;
+      step_position_x = 800 ;
       step_position_y =  80 ;
 
 

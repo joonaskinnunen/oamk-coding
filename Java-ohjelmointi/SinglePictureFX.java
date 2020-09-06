@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.shape.* ;
 
 
 public class SinglePictureFX extends Application
@@ -26,8 +27,11 @@ public class SinglePictureFX extends Application
 
       natural_size_view.setX( (scene.getWidth() - picture_to_show.getWidth()) / 2) ;
       natural_size_view.setY( (scene.getHeight() - picture_to_show.getHeight()) / 2 ) ;
+      
+      Rectangle picture_frame = new Rectangle(((int) Math.round(scene.getWidth() - picture_to_show.getWidth()) / 2) -10, ((int) Math.round(scene.getHeight() - picture_to_show.getHeight()) / 2) -10, picture_to_show.getWidth() + 20, picture_to_show.getHeight() + 20) ;
+      picture_frame.setFill(Color.RED);
 
-      group_for_imageviews.getChildren().add( natural_size_view) ;
+      group_for_imageviews.getChildren().addAll( picture_frame, natural_size_view) ;
            
       stage.setScene( scene ) ;
       stage.show() ;

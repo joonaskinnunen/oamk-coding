@@ -32,8 +32,11 @@ public class StepsFX extends Application
                      step_position_y,
                      ( number_of_steps_to_make - step_counter ) * step_size,
                      step_size ) ;
+         Color[] step_colors = { Color.DARKKHAKI, Color.AQUAMARINE, Color.LIGHTBLUE,
+         Color.KHAKI, Color.ORANGE, Color.ROSYBROWN,
+         Color.THISTLE, Color.TOMATO } ;
 
-         new_step.setFill( Color.GOLD ) ;
+         new_step.setFill( step_colors[step_counter] ) ;
          new_step.setStroke( Color.CHOCOLATE ) ;
          new_step.setStrokeWidth( 4 ) ;
 

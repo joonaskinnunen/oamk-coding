@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\bin\Debug\MouseEvent.exe.config
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\bin\Debug\MouseEvent.exe
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\bin\Debug\MouseEvent.pdb
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.Form1.resources
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.exe
+C:\Users\Joonas Kinnunen\source\repos\MouseEvent\MouseEvent\obj\Debug\MouseEvent.pdb

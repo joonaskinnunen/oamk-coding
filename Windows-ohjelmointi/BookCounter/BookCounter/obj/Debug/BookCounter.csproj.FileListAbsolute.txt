@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\bin\Debug\BookCounter.exe.config
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\bin\Debug\BookCounter.exe
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\bin\Debug\BookCounter.pdb
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.Form1.resources
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.exe
+C:\Users\Joonas Kinnunen\source\repos\BookCounter\BookCounter\obj\Debug\BookCounter.pdb

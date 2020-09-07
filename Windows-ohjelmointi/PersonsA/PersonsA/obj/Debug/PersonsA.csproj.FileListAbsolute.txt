@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\bin\Debug\PersonsA.exe.config
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\bin\Debug\PersonsA.exe
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\bin\Debug\PersonsA.pdb
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.Form1.resources
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.exe
+C:\Users\Joonas Kinnunen\source\repos\PersonsA\PersonsA\obj\Debug\PersonsA.pdb

@@ -90,6 +90,8 @@ public class MovingBallsWithMouseFX extends Application {
             ball_in_list.setOnMousePressed((MouseEvent event)
                     -> {
                 if (ball_movement_going_on == false) {
+                    group_for_balls.getChildren().remove(child_in_list);
+                    group_for_balls.getChildren().add(child_in_list);
                     ball_in_list.activate_ball();
                     previous_cursor_position_x = event.getSceneX();
                     previous_cursor_position_y = event.getSceneY();
@@ -111,7 +113,6 @@ public class MovingBallsWithMouseFX extends Application {
 
                     ball_in_list.move_this_ball(mouse_movement_x,
                             mouse_movement_y);
-
                 }
             });
 

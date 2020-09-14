@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\bin\Debug\Info.exe.config
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\bin\Debug\Info.exe
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\bin\Debug\Info.pdb
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.exe
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.pdb
+C:\Users\Joonas Kinnunen\source\repos\Info\Info\obj\Debug\Info.FormFavCountry.resources

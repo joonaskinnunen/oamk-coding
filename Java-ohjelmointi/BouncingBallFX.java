@@ -191,6 +191,10 @@ class ExplodingBouncer extends RotatingBouncer {
         super(given_position, given_color, given_bouncing_area);
     }
 
+    public boolean is_exploded() {
+        return (ball_state == BALL_EXPLODED);
+    }
+
     public void explode_ball() {
         // With the following if construct we ensure that the
         // ball can be exploded only once.
@@ -251,16 +255,7 @@ public class BouncingBallFX extends Application {
 
     AnimationTimer animation_timer;
 
-    public void start(Stage stage) {
-        Group group_for_balls = new Group();
-
-        stage.setTitle("BouncingBallFX.java");
-
-        Scene scene = new Scene(group_for_balls, SCENE_WIDTH, SCENE_HEIGHT);
-
-        scene.setFill(Color.LIGHTYELLOW);
-
-        Rectangle bouncing_area = new Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+    public void create_balls(Group group, Rectangle area) {
         Color[] ball_colors = {Color.GOLD, Color.FIREBRICK, Color.DARKVIOLET,
             Color.DEEPSKYBLUE, Color.OLIVE, Color.ORCHID,
             Color.ORANGERED, Color.PEACHPUFF, Color.SNOW,
@@ -273,10 +268,22 @@ public class BouncingBallFX extends Application {
                     = new ExplodingBouncer(new Point2D(SCENE_WIDTH / 2,
                             SCENE_HEIGHT / 2),
                             ball_colors[ball_counter],
-                            bouncing_area);
-            group_for_balls.getChildren().add(ball_to_screen);
+                            area);
+            group.getChildren().add(ball_to_screen);
         }
+    }
 
+    public void start(Stage stage) {
+        Group group_for_balls = new Group();
+
+        stage.setTitle("BouncingBallFX.java");
+
+        Scene scene = new Scene(group_for_balls, SCENE_WIDTH, SCENE_HEIGHT);
+
+        scene.setFill(Color.LIGHTYELLOW);
+
+        Rectangle bouncing_area = new Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        create_balls(group_for_balls, bouncing_area);
         scene.setOnMousePressed((MouseEvent event)
                 -> {
             if (game_is_being_played) {
@@ -302,10 +309,18 @@ public class BouncingBallFX extends Application {
 
         animation_timer = new AnimationTimer() {
             public void handle(long timestamp_of_current_frame) {
+                boolean is_all_exploded = true;
                 if (game_is_being_played) {
                     for (Node ball_as_node : group_for_balls.getChildren()) {
                         ExplodingBouncer ball_to_move = (ExplodingBouncer) ball_as_node;
                         ball_to_move.move();
+                        if (!ball_to_move.is_exploded()) {
+                            is_all_exploded = false;
+                        }
+                    }
+                    if (is_all_exploded) {
+                        game_is_being_played = false;
+                        create_balls(group_for_balls, bouncing_area);
                     }
                 }
             }

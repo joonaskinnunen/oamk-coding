@@ -149,7 +149,21 @@ public class MovingBallsWithMouseFX extends Application {
 
         scene.setFill(Color.LIGHTYELLOW);
 
-        stage.setTitle("MovingBallsWithMouseFX.java");
+        scene.setOnMousePressed((MouseEvent event)
+                -> {
+            if (ball_movement_going_on == false) {
+                if (event.isControlDown()) {
+                    group_for_balls.getChildren().add(
+                            new Ball(event.getSceneX(), event.getSceneY(), 64, Color.RED));
+                    set_mouse_activities_for_balls();
+                }
+                if (event.isShiftDown()) {
+                    group_for_balls.getChildren().add(
+                            new GradientBall(event.getSceneX(), event.getSceneY(), 64, Color.YELLOW));
+                    set_mouse_activities_for_balls();
+                }
+            }
+        });
         stage.setScene(scene);
         stage.show();
     }

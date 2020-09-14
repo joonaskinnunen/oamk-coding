@@ -1,150 +1,159 @@
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-import javafx.scene.* ;
+import javax.swing.*;
+import java.awt.*;
 
-import javafx.scene.layout.* ;
+import javafx.scene.*;
+
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.geometry.* ; // Point2D
+import javafx.geometry.*; // Point2D
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
 
-import javafx.scene.shape.Circle ;
+import javafx.scene.shape.Circle;
 
-import javafx.collections.* ; // ObservableList etc.
+import javafx.collections.*; // ObservableList etc.
+import java.awt.geom.Rectangle2D;
 
-class Ball extends Circle
-{
-   public Ball( double given_center_point_x,
-                double given_center_point_y,
-                double given_radius,
-                Color  given_color )
-   {
-      super( given_center_point_x, given_center_point_y, given_radius, given_color ) ;
+class Ball extends Circle {
 
-      setStroke( Color.BLACK ) ;
-      setStrokeWidth( 2 ) ;
-   }
+    public Ball(double given_center_point_x,
+            double given_center_point_y,
+            double given_radius,
+            Color given_color) {
+        super(given_center_point_x, given_center_point_y, given_radius, given_color);
 
-   public void activate_ball()
-   {
-      setStrokeWidth( 6 ) ;
-   }
+        setStroke(Color.BLACK);
+        setStrokeWidth(2);
+    }
 
-   public void deactivate_ball()
-   {
-      setStrokeWidth( 2 ) ;
-   }
+    public void activate_ball() {
+        setStrokeWidth(6);
+    }
 
-   public void  move_this_ball( double movement_in_direction_x,
-                                double movement_in_direction_y )
-   {
-      setCenterX( getCenterX()  +  movement_in_direction_x ) ;
-      setCenterY( getCenterY()  +  movement_in_direction_y ) ;
-   }
+    public void deactivate_ball() {
+        setStrokeWidth(2);
+    }
+
+    public void move_this_ball(double movement_in_direction_x,
+            double movement_in_direction_y) {
+        setCenterX(getCenterX() + movement_in_direction_x);
+        setCenterY(getCenterY() + movement_in_direction_y);
+    }
 
 }
 
-public class MovingBallsWithMouseFX extends Application
-{
-   static final int SCENE_WIDTH  = 800 ;
-   static final int SCENE_HEIGHT = 600 ;
+class GradientBall extends Ball {
 
-   boolean ball_movement_going_on = false ;
+    public GradientBall(double given_center_point_x,
+            double given_center_point_y,
+            double given_radius,
+            Color given_color) {
+        super(given_center_point_x, given_center_point_y, given_radius, given_color);
+        Stop[] color_stops = {new Stop(0, Color.WHITE),
+            new Stop(1, given_color)};
+        LinearGradient gradient_color = new LinearGradient(0, 0, 1, 1, true,
+                CycleMethod.NO_CYCLE, color_stops);
+        setStroke(Color.BLACK);
+        setStrokeWidth(2);
+        setFill(gradient_color);
+    }
+}
 
-   double previous_cursor_position_x, previous_cursor_position_y ;
+public class MovingBallsWithMouseFX extends Application {
 
-   Group group_for_balls = new Group() ;
+    static final int SCENE_WIDTH = 800;
+    static final int SCENE_HEIGHT = 600;
 
+    boolean ball_movement_going_on = false;
 
-   private void set_mouse_activities_for_balls()
-   {
-      // The following 'foreach' loop specifies, for each Ball object,
-      // the activities to be performed when mouse events take place
-      // on the balls.
+    double previous_cursor_position_x, previous_cursor_position_y;
 
-      for ( Node child_in_list : group_for_balls.getChildren() )
-      {
-         Ball ball_in_list = (Ball) child_in_list ;
+    Group group_for_balls = new Group();
 
-         ball_in_list.setOnMousePressed( ( MouseEvent event ) ->
-         {
-            if ( ball_movement_going_on == false )
-            {
-               ball_in_list.activate_ball() ;
-               previous_cursor_position_x = event.getSceneX() ;
-               previous_cursor_position_y = event.getSceneY() ;
-               ball_movement_going_on = true ;
-            }
-         } ) ;
+    private void set_mouse_activities_for_balls() {
+        // The following 'foreach' loop specifies, for each Ball object,
+        // the activities to be performed when mouse events take place
+        // on the balls.
 
-         ball_in_list.setOnMouseDragged( ( MouseEvent event ) ->
-         {
-            if ( ball_movement_going_on == true )
-            {
-               double mouse_movement_x  =  event.getSceneX()
-                                          -  previous_cursor_position_x ;
-      
-               double mouse_movement_y  =  event.getSceneY() 
-                                         -  previous_cursor_position_y ;
-      
-               previous_cursor_position_x  =  event.getSceneX() ;
-               previous_cursor_position_y  =  event.getSceneY() ;
- 
-               ball_in_list.move_this_ball( mouse_movement_x, 
-                                            mouse_movement_y ) ;
+        for (Node child_in_list : group_for_balls.getChildren()) {
+            Ball ball_in_list = (Ball) child_in_list;
 
-            }
-         } ) ;
+            ball_in_list.setOnMousePressed((MouseEvent event)
+                    -> {
+                if (ball_movement_going_on == false) {
+                    ball_in_list.activate_ball();
+                    previous_cursor_position_x = event.getSceneX();
+                    previous_cursor_position_y = event.getSceneY();
+                    ball_movement_going_on = true;
+                }
+            });
 
-         ball_in_list.setOnMouseReleased( ( MouseEvent event ) ->
-         {
-            if ( ball_movement_going_on == true )
-            {
-               ball_in_list.deactivate_ball() ;
-               ball_movement_going_on = false ;
-            }
-         } ) ;
-      }
-   }
+            ball_in_list.setOnMouseDragged((MouseEvent event)
+                    -> {
+                if (ball_movement_going_on == true) {
+                    double mouse_movement_x = event.getSceneX()
+                            - previous_cursor_position_x;
 
-   public void start( Stage stage )
-   {
+                    double mouse_movement_y = event.getSceneY()
+                            - previous_cursor_position_y;
 
-      group_for_balls.getChildren().add(
-           new Ball( SCENE_WIDTH / 5, SCENE_HEIGHT / 2, 64, Color.RED ) ) ;
+                    previous_cursor_position_x = event.getSceneX();
+                    previous_cursor_position_y = event.getSceneY();
 
+                    ball_in_list.move_this_ball(mouse_movement_x,
+                            mouse_movement_y);
 
-      group_for_balls.getChildren().add(
-           new Ball( SCENE_WIDTH / 5 * 2, SCENE_HEIGHT / 2, 64, Color.GREEN ) ) ;
+                }
+            });
 
+            ball_in_list.setOnMouseReleased((MouseEvent event)
+                    -> {
+                if (ball_movement_going_on == true) {
+                    ball_in_list.deactivate_ball();
+                    ball_movement_going_on = false;
+                }
+            });
+        }
+    }
 
-      group_for_balls.getChildren().add(
-           new Ball( SCENE_WIDTH * 3 / 5, SCENE_HEIGHT / 2, 64, Color.BLUE ) ) ;
+    public void start(Stage stage) {
 
-      group_for_balls.getChildren().add(
-           new Ball( SCENE_WIDTH * 4 / 5, SCENE_HEIGHT / 2, 64, Color.BLUE ) ) ;
-      // Now the Ball objects are stored as 'children' of the Group.
-      // The following method call specifies what will happen when
-      // the balls are operated with the mouse.
+        group_for_balls.getChildren().add(
+                new Ball(SCENE_WIDTH / 5, SCENE_HEIGHT / 2, 64, Color.RED));
 
-      set_mouse_activities_for_balls() ;
+        group_for_balls.getChildren().add(
+                new Ball(SCENE_WIDTH / 5 * 2, SCENE_HEIGHT / 2, 64, Color.GREEN));
 
+        group_for_balls.getChildren().add(
+                new Ball(SCENE_WIDTH * 3 / 5, SCENE_HEIGHT / 2, 64, Color.BLUE));
 
-      Scene scene = new Scene( group_for_balls, SCENE_WIDTH, SCENE_HEIGHT ) ;
+        group_for_balls.getChildren().add(
+                new Ball(SCENE_WIDTH * 4 / 5, SCENE_HEIGHT / 2, 64, Color.PURPLE));
 
-      scene.setFill( Color.LIGHTYELLOW ) ;
+        group_for_balls.getChildren().add(
+                new GradientBall(SCENE_WIDTH * 4 / 5, SCENE_HEIGHT / 4, 64, Color.YELLOW));
 
-      stage.setTitle( "MovingBallsWithMouseFX.java" ) ;
-      stage.setScene( scene ) ;
-      stage.show();
-   }
+        set_mouse_activities_for_balls();
 
+        Scene scene = new Scene(group_for_balls, SCENE_WIDTH, SCENE_HEIGHT);
 
-   public static void main( String[] command_line_parameters )
-   {
-      launch( command_line_parameters ) ;
-   }
+        scene.setFill(Color.LIGHTYELLOW);
+
+        stage.setTitle("MovingBallsWithMouseFX.java");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] command_line_parameters) {
+        launch(command_line_parameters);
+    }
 }

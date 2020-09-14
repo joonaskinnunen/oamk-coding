@@ -247,6 +247,7 @@ public class BouncingBallFX extends Application {
 
     static final int SCENE_WIDTH = 800;
     static final int SCENE_HEIGHT = 680;
+    boolean game_is_being_played = false;
 
     AnimationTimer animation_timer;
 
@@ -278,13 +279,21 @@ public class BouncingBallFX extends Application {
 
         scene.setOnMousePressed((MouseEvent event)
                 -> {
-            double clicked_point_x = event.getSceneX();
-            double clicked_point_y = event.getSceneY();
-            for (Node ball_as_node : group_for_balls.getChildren()) {
-                ExplodingBouncer ball_to_check = (ExplodingBouncer) ball_as_node;
-                if (ball_to_check.contains_point(event.getSceneX(), event.getSceneY())) {
-                    ball_to_check.explode_ball();
+            if (game_is_being_played) {
+                double clicked_point_x = event.getSceneX();
+                double clicked_point_y = event.getSceneY();
+                for (Node ball_as_node : group_for_balls.getChildren()) {
+                    ExplodingBouncer ball_to_check = (ExplodingBouncer) ball_as_node;
+                    if (ball_to_check.contains_point(event.getSceneX(), event.getSceneY())) {
+                        ball_to_check.explode_ball();
+                    }
                 }
+            }
+        });
+        scene.setOnKeyPressed((KeyEvent event)
+                -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                game_is_being_played = true;
             }
         });
 
@@ -293,9 +302,11 @@ public class BouncingBallFX extends Application {
 
         animation_timer = new AnimationTimer() {
             public void handle(long timestamp_of_current_frame) {
-                for (Node ball_as_node : group_for_balls.getChildren()) {
-                    ExplodingBouncer ball_to_move = (ExplodingBouncer) ball_as_node;
-                    ball_to_move.move();
+                if (game_is_being_played) {
+                    for (Node ball_as_node : group_for_balls.getChildren()) {
+                        ExplodingBouncer ball_to_move = (ExplodingBouncer) ball_as_node;
+                        ball_to_move.move();
+                    }
                 }
             }
         };

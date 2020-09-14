@@ -260,6 +260,10 @@ public class BouncingBallFX extends Application {
         scene.setFill(Color.LIGHTYELLOW);
 
         Rectangle bouncing_area = new Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        Color[] ball_colors = { Color.GOLD, Color.FIREBRICK, Color.DARKVIOLET,
+ Color.DEEPSKYBLUE, Color.OLIVE, Color.ORCHID,
+ Color.ORANGERED, Color.PEACHPUFF, Color.SNOW,
+ Color.THISTLE } ;
 
         for (int ball_counter = 0;
                 ball_counter < 10;
@@ -267,7 +271,7 @@ public class BouncingBallFX extends Application {
             ExplodingBouncer ball_to_screen
                     = new ExplodingBouncer(new Point2D(SCENE_WIDTH / 2,
                             SCENE_HEIGHT / 2),
-                            Color.LIME,
+                            ball_colors[ball_counter],
                             bouncing_area);
             group_for_balls.getChildren().add(ball_to_screen);
         }

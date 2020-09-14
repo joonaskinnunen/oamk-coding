@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;  // Arc, Circle, etc.
 import javafx.geometry.*; // Point2D, etc.
+import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import javafx.scene.input.*; // KeyEvent, KeyCode
@@ -260,23 +261,21 @@ public class BouncingBallFX extends Application {
 
         Rectangle bouncing_area = new Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
 
-        ExplodingBouncer ball_on_screen = new ExplodingBouncer(new Point2D(SCENE_WIDTH / 2,
-                SCENE_HEIGHT / 2),
-                Color.LIME,
-                bouncing_area);
-        ExplodingBouncer another_ball = new ExplodingBouncer(
-                new Point2D(SCENE_WIDTH / 2,
-                        SCENE_HEIGHT / 2),
-                Color.LIGHTYELLOW,
-                bouncing_area);
-
-        group_for_balls.getChildren().add(ball_on_screen);
-        group_for_balls.getChildren().add(another_ball);
+        for (int ball_counter = 0;
+                ball_counter < 10;
+                ball_counter++) {
+            ExplodingBouncer ball_to_screen
+                    = new ExplodingBouncer(new Point2D(SCENE_WIDTH / 2,
+                            SCENE_HEIGHT / 2),
+                            Color.LIME,
+                            bouncing_area);
+            group_for_balls.getChildren().add(ball_to_screen);
+        }
 
         scene.setOnKeyPressed((KeyEvent event)
                 -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                ball_on_screen.explode_ball();
+                //    ball_on_screen.explode_ball();
             }
         });
 
@@ -285,8 +284,10 @@ public class BouncingBallFX extends Application {
 
         animation_timer = new AnimationTimer() {
             public void handle(long timestamp_of_current_frame) {
-                ball_on_screen.move();
-                another_ball.move();
+                for (Node ball_as_node : group_for_balls.getChildren()) {
+                    ExplodingBouncer ball_to_move = (ExplodingBouncer) ball_as_node;
+                    ball_to_move.move();
+                }
             }
         };
 

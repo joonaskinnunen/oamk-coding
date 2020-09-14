@@ -260,10 +260,10 @@ public class BouncingBallFX extends Application {
         scene.setFill(Color.LIGHTYELLOW);
 
         Rectangle bouncing_area = new Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        Color[] ball_colors = { Color.GOLD, Color.FIREBRICK, Color.DARKVIOLET,
- Color.DEEPSKYBLUE, Color.OLIVE, Color.ORCHID,
- Color.ORANGERED, Color.PEACHPUFF, Color.SNOW,
- Color.THISTLE } ;
+        Color[] ball_colors = {Color.GOLD, Color.FIREBRICK, Color.DARKVIOLET,
+            Color.DEEPSKYBLUE, Color.OLIVE, Color.ORCHID,
+            Color.ORANGERED, Color.PEACHPUFF, Color.SNOW,
+            Color.THISTLE};
 
         for (int ball_counter = 0;
                 ball_counter < 10;
@@ -276,10 +276,15 @@ public class BouncingBallFX extends Application {
             group_for_balls.getChildren().add(ball_to_screen);
         }
 
-        scene.setOnKeyPressed((KeyEvent event)
+        scene.setOnMousePressed((MouseEvent event)
                 -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                //    ball_on_screen.explode_ball();
+            double clicked_point_x = event.getSceneX();
+            double clicked_point_y = event.getSceneY();
+            for (Node ball_as_node : group_for_balls.getChildren()) {
+                ExplodingBouncer ball_to_check = (ExplodingBouncer) ball_as_node;
+                if (ball_to_check.contains_point(event.getSceneX(), event.getSceneY())) {
+                    ball_to_check.explode_ball();
+                }
             }
         });
 

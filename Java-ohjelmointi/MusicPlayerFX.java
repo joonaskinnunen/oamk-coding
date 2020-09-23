@@ -55,11 +55,11 @@ public class MusicPlayerFX extends Application {
         Label volumeLabel = new Label("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
         Image vUpImg = new Image("https://cdn.onlinewebfonts.com/svg/img_426259.png");
         ImageView vUpView = new ImageView(vUpImg);
+        Image vDownImg = new Image("https://www.freeiconspng.com/thumbs/volume-icon/volume-icon-19.png");
+        ImageView vDownView = new ImageView(vDownImg);
         vUpView.setFitHeight(10);
         vUpView.setPreserveRatio(true);
         volumeUpButton.setGraphic(vUpView);
-        Image vDownImg = new Image("https://www.freeiconspng.com/thumbs/volume-icon/volume-icon-19.png");
-        ImageView vDownView = new ImageView(vDownImg);
         vDownView.setFitHeight(10);
         vDownView.setPreserveRatio(true);
         volumeUpButton.setGraphic(vUpView);
@@ -79,6 +79,7 @@ public class MusicPlayerFX extends Application {
         
         volumeDownButton.setOnAction((ActionEvent event)
                 -> {
+            System.out.println("Volume down");
             if(mediaPlayer.getVolume() > 0.1) mediaPlayer.setVolume(mediaPlayer.getVolume() - 0.1);
             volumeLabel.setText("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
 
@@ -86,18 +87,19 @@ public class MusicPlayerFX extends Application {
         
         volumeUpButton.setOnAction((ActionEvent event)
                 -> {
+            System.out.println("Volume up");
             if(mediaPlayer.getVolume() < 1.0) mediaPlayer.setVolume(mediaPlayer.getVolume() + 0.1);
             volumeLabel.setText("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
         });
         
         nextButton.setOnAction((ActionEvent event)
                 -> {
+            System.out.println("next track");
             if (trackIndex < 9) {
                 trackIndex++;
             } else {
                 trackIndex = 0;
             }
-            System.out.println("next track");
             createMediaPlayer();
             playAudio();
 
@@ -105,12 +107,12 @@ public class MusicPlayerFX extends Application {
         
         previousButton.setOnAction((ActionEvent event)
                 -> {
+            System.out.println("previous track");
             if (trackIndex > 0) {
                 trackIndex--;
             } else {
                 trackIndex = 9;
             }
-            System.out.println("previous track");
             createMediaPlayer();
             playAudio();
         });

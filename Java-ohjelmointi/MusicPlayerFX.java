@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package drummachine;
+package musicplayerfx;
 
 import java.io.File;
 import javafx.application.Application;
@@ -19,6 +19,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -47,7 +49,21 @@ public class MusicPlayerFX extends Application {
         Button playButton = new Button("play");
         Button nextButton = new Button("next");
         Button previousButton = new Button("previous");
+        Button volumeDownButton = new Button();
+        Button volumeUpButton = new Button();
         Label title = new Label("Music player");
+        Label volumeLabel = new Label("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
+        Image vUpImg = new Image("https://cdn.onlinewebfonts.com/svg/img_426259.png");
+        ImageView vUpView = new ImageView(vUpImg);
+        vUpView.setFitHeight(10);
+        vUpView.setPreserveRatio(true);
+        volumeUpButton.setGraphic(vUpView);
+        Image vDownImg = new Image("https://www.freeiconspng.com/thumbs/volume-icon/volume-icon-19.png");
+        ImageView vDownView = new ImageView(vDownImg);
+        vDownView.setFitHeight(10);
+        vDownView.setPreserveRatio(true);
+        volumeUpButton.setGraphic(vUpView);
+        volumeDownButton.setGraphic(vDownView);
         timeSlider.setMinWidth(50);
         timeSlider.setMaxWidth(Double.MAX_VALUE);
         createMediaPlayer();
@@ -60,6 +76,20 @@ public class MusicPlayerFX extends Application {
             playAudio();
 
         });
+        
+        volumeDownButton.setOnAction((ActionEvent event)
+                -> {
+            if(mediaPlayer.getVolume() > 0.1) mediaPlayer.setVolume(mediaPlayer.getVolume() - 0.1);
+            volumeLabel.setText("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
+
+        });
+        
+        volumeUpButton.setOnAction((ActionEvent event)
+                -> {
+            if(mediaPlayer.getVolume() < 1.0) mediaPlayer.setVolume(mediaPlayer.getVolume() + 0.1);
+            volumeLabel.setText("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
+        });
+        
         nextButton.setOnAction((ActionEvent event)
                 -> {
             if (trackIndex < 9) {
@@ -72,6 +102,7 @@ public class MusicPlayerFX extends Application {
             playAudio();
 
         });
+        
         previousButton.setOnAction((ActionEvent event)
                 -> {
             if (trackIndex > 0) {
@@ -94,9 +125,10 @@ public class MusicPlayerFX extends Application {
                 + "-fx-background-color: black;");
         GridPane.setHalignment(title, HPos.CENTER);
         GridPane.setHalignment(trackName, HPos.CENTER);
+        GridPane.setHalignment(volumeLabel, HPos.CENTER);
         title.setFont(Font.font("Tahoma", 30));
         trackName.setFont(Font.font("Tahoma", 15));
-        title.setMinHeight(120);
+        title.setMinHeight(70);
         trackName.setTextFill(Color.ORANGE);
         title.setTextFill(Color.BLUE);
         trackName.setBackground(new Background(
@@ -107,14 +139,23 @@ public class MusicPlayerFX extends Application {
                                 Color.YELLOW.getBlue(), 0.4d),
                         new CornerRadii(2),
                         null)));
+        volumeLabel.setTextFill(Color.WHITE);
         HBox hbButtons = new HBox();
+        HBox hbVolumeButtons = new HBox();
         hbButtons.setSpacing(10.0);
-        hbButtons.setPadding(new Insets(20, 0, 0, 0));
+        hbButtons.setPadding(new Insets(20, 0, 20, 0));
         hbButtons.getChildren().addAll(playButton, nextButton, previousButton);
+        hbVolumeButtons.setSpacing(10.0);
+        hbVolumeButtons.setPadding(new Insets(5, 0, 0, 0));
+        hbVolumeButtons.setAlignment(Pos.CENTER);
+        hbVolumeButtons.getChildren().addAll(volumeDownButton, volumeUpButton);
+        timeSlider.setPadding(new Insets(5, 0, 0, 0));
         grid.add(title, 1, 0);
         grid.add(trackName, 1, 1);
         grid.add(timeSlider, 1, 2);
         grid.add(hbButtons, 1, 3);
+        grid.add(volumeLabel, 1, 4);
+        grid.add(hbVolumeButtons, 1, 5);
         Scene scene = new Scene(grid, 300, 250);
         primaryStage.setTitle("Music player");
         primaryStage.setScene(scene);
@@ -122,10 +163,12 @@ public class MusicPlayerFX extends Application {
     }
 
     public void createMediaPlayer() {
+        double volume = mediaPlayer.getVolume();
         mediaPlayer.dispose();
         sound = new Media(new File("sounds/" + tracks[trackIndex]).toURI().toString());
         trackName.setText(isPlaying ? "Now playing: " + tracks[trackIndex] : "Paused: " + tracks[trackIndex]);
         mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(volume);
         sound.durationProperty().addListener(change -> {
             timeSlider.setMax(sound.getDuration().toSeconds());
             timeSlider.setOnMouseDragged(drag -> {

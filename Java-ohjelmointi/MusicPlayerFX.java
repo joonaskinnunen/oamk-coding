@@ -48,22 +48,40 @@ public class MusicPlayerFX extends Application {
     public void start(Stage primaryStage) throws Exception {
         Button playButton = new Button("play");
         Button nextButton = new Button("next");
-        Button previousButton = new Button("previous");
+        Button previousButton = new Button("prev");
         Button volumeDownButton = new Button();
         Button volumeUpButton = new Button();
         Label title = new Label("Music player");
         Label volumeLabel = new Label("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
-        Image vUpImg = new Image("https://cdn.onlinewebfonts.com/svg/img_426259.png");
+        Image vUpImg = new Image("https://i.ibb.co/X2W6L2Z/volumeup.png");
         ImageView vUpView = new ImageView(vUpImg);
-        Image vDownImg = new Image("https://www.freeiconspng.com/thumbs/volume-icon/volume-icon-19.png");
+        Image vDownImg = new Image("https://i.ibb.co/yPNX3JW/volumedown.png");
         ImageView vDownView = new ImageView(vDownImg);
+        Image playImg = new Image("https://i.ibb.co/jw2CfR2/playbutton.png");
+        ImageView playView = new ImageView(playImg);
+        Image pauseImg = new Image("https://i.ibb.co/sgwzKHJ/pausebutton.png");
+        ImageView pauseView = new ImageView(pauseImg);
+        Image nextImg = new Image("https://i.ibb.co/4mHN7CK/nextbutton.png");
+        ImageView nextView = new ImageView(nextImg);
+        Image prevImg = new Image("https://i.ibb.co/71QDqMx/previousbutton.png");
+        ImageView prevView = new ImageView(prevImg);
         vUpView.setFitHeight(10);
         vUpView.setPreserveRatio(true);
-        volumeUpButton.setGraphic(vUpView);
         vDownView.setFitHeight(10);
         vDownView.setPreserveRatio(true);
+        playView.setFitHeight(15);
+        playView.setPreserveRatio(true);
+        pauseView.setFitHeight(15);
+        pauseView.setPreserveRatio(true);
+        nextView.setFitHeight(15);
+        nextView.setPreserveRatio(true);
+        prevView.setFitHeight(15);
+        prevView.setPreserveRatio(true);
         volumeUpButton.setGraphic(vUpView);
         volumeDownButton.setGraphic(vDownView);
+        playButton.setGraphic(playView);
+        nextButton.setGraphic(nextView);
+        previousButton.setGraphic(prevView);
         timeSlider.setMinWidth(50);
         timeSlider.setMaxWidth(Double.MAX_VALUE);
         createMediaPlayer();
@@ -73,7 +91,8 @@ public class MusicPlayerFX extends Application {
             isPlaying = !isPlaying;
             trackName.setText(isPlaying ? "Now playing: " + tracks[trackIndex] : "Paused: " + tracks[trackIndex]);
             playButton.setText(isPlaying ? "pause" : "play");
-            playAudio();
+            playButton.setGraphic(isPlaying ? pauseView : playView);
+            togglePlayer();
 
         });
         
@@ -101,7 +120,7 @@ public class MusicPlayerFX extends Application {
                 trackIndex = 0;
             }
             createMediaPlayer();
-            playAudio();
+            togglePlayer();
 
         });
         
@@ -114,7 +133,7 @@ public class MusicPlayerFX extends Application {
                 trackIndex = 9;
             }
             createMediaPlayer();
-            playAudio();
+            togglePlayer();
         });
 
         GridPane grid = new GridPane();
@@ -146,7 +165,7 @@ public class MusicPlayerFX extends Application {
         HBox hbVolumeButtons = new HBox();
         hbButtons.setSpacing(10.0);
         hbButtons.setPadding(new Insets(20, 0, 20, 0));
-        hbButtons.getChildren().addAll(playButton, nextButton, previousButton);
+        hbButtons.getChildren().addAll(playButton, previousButton, nextButton);
         hbVolumeButtons.setSpacing(10.0);
         hbVolumeButtons.setPadding(new Insets(5, 0, 0, 0));
         hbVolumeButtons.setAlignment(Pos.CENTER);
@@ -182,7 +201,7 @@ public class MusicPlayerFX extends Application {
         });
     }
 
-    public void playAudio() {
+    public void togglePlayer() {
         System.out.println("playing..");
         try {
             if (isPlaying) {

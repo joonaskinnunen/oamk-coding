@@ -6,6 +6,8 @@
 package musicplayerfx;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -39,32 +42,35 @@ public class MusicPlayerFX extends Application {
     boolean isPlaying = false;
     String[] tracks = {"clip1.wav", "clip2.wav", "clip3.wav", "clip4.wav", "clip5.wav", "clip6.wav", "clip7.wav", "clip8.wav", "clip9.wav", "clip10.wav"};
     int trackIndex = 0;
+    ArrayList<Integer> trackHistory = new ArrayList<>();
     Media sound = new Media(new File("sounds/" + tracks[0]).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     Label trackName = new Label("Paused " + tracks[0]);
     Slider timeSlider = new Slider(0, 0, 0);
+    Button playButton = new Button("play");
+    Button nextButton = new Button("next");
+    Button previousButton = new Button("prev");
+    Button volumeDownButton = new Button();
+    Button volumeUpButton = new Button();
+    Label title = new Label("Music player");
+    Label volumeLabel = new Label("Volume: " + (int) Math.round(mediaPlayer.getVolume() * 100) + "%");
+    Image vUpImg = new Image("https://i.ibb.co/X2W6L2Z/volumeup.png");
+    ImageView vUpView = new ImageView(vUpImg);
+    Image vDownImg = new Image("https://i.ibb.co/yPNX3JW/volumedown.png");
+    ImageView vDownView = new ImageView(vDownImg);
+    Image playImg = new Image("https://i.ibb.co/jw2CfR2/playbutton.png");
+    ImageView playView = new ImageView(playImg);
+    Image pauseImg = new Image("https://i.ibb.co/sgwzKHJ/pausebutton.png");
+    ImageView pauseView = new ImageView(pauseImg);
+    Image nextImg = new Image("https://i.ibb.co/4mHN7CK/nextbutton.png");
+    ImageView nextView = new ImageView(nextImg);
+    Image prevImg = new Image("https://i.ibb.co/71QDqMx/previousbutton.png");
+    ImageView prevView = new ImageView(prevImg);
+    CheckBox autoplayCb = new CheckBox("autoplay");
+    CheckBox shuffleCb = new CheckBox("shuffle");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Button playButton = new Button("play");
-        Button nextButton = new Button("next");
-        Button previousButton = new Button("prev");
-        Button volumeDownButton = new Button();
-        Button volumeUpButton = new Button();
-        Label title = new Label("Music player");
-        Label volumeLabel = new Label("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
-        Image vUpImg = new Image("https://i.ibb.co/X2W6L2Z/volumeup.png");
-        ImageView vUpView = new ImageView(vUpImg);
-        Image vDownImg = new Image("https://i.ibb.co/yPNX3JW/volumedown.png");
-        ImageView vDownView = new ImageView(vDownImg);
-        Image playImg = new Image("https://i.ibb.co/jw2CfR2/playbutton.png");
-        ImageView playView = new ImageView(playImg);
-        Image pauseImg = new Image("https://i.ibb.co/sgwzKHJ/pausebutton.png");
-        ImageView pauseView = new ImageView(pauseImg);
-        Image nextImg = new Image("https://i.ibb.co/4mHN7CK/nextbutton.png");
-        ImageView nextView = new ImageView(nextImg);
-        Image prevImg = new Image("https://i.ibb.co/71QDqMx/previousbutton.png");
-        ImageView prevView = new ImageView(prevImg);
         vUpView.setFitHeight(10);
         vUpView.setPreserveRatio(true);
         vDownView.setFitHeight(10);
@@ -85,6 +91,8 @@ public class MusicPlayerFX extends Application {
         timeSlider.setMinWidth(50);
         timeSlider.setMaxWidth(Double.MAX_VALUE);
         createMediaPlayer();
+        
+        previousButton.setDisable(true);
 
         playButton.setOnAction((ActionEvent event)
                 -> {
@@ -93,45 +101,54 @@ public class MusicPlayerFX extends Application {
             playButton.setText(isPlaying ? "pause" : "play");
             playButton.setGraphic(isPlaying ? pauseView : playView);
             togglePlayer();
-
         });
-        
+
         volumeDownButton.setOnAction((ActionEvent event)
                 -> {
             System.out.println("Volume down");
-            if(mediaPlayer.getVolume() > 0.1) mediaPlayer.setVolume(mediaPlayer.getVolume() - 0.1);
-            volumeLabel.setText("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
+            if (mediaPlayer.getVolume() > 0.1) {
+                mediaPlayer.setVolume(mediaPlayer.getVolume() - 0.1);
+            }
+            volumeLabel.setText("Volume: " + (int) Math.round(mediaPlayer.getVolume() * 100) + "%");
 
         });
-        
+
         volumeUpButton.setOnAction((ActionEvent event)
                 -> {
             System.out.println("Volume up");
-            if(mediaPlayer.getVolume() < 1.0) mediaPlayer.setVolume(mediaPlayer.getVolume() + 0.1);
-            volumeLabel.setText("Volume: " + (int)Math.round(mediaPlayer.getVolume() * 100) + "%");
+            if (mediaPlayer.getVolume() < 1.0) {
+                mediaPlayer.setVolume(mediaPlayer.getVolume() + 0.1);
+            }
+            volumeLabel.setText("Volume: " + (int) Math.round(mediaPlayer.getVolume() * 100) + "%");
         });
-        
+
         nextButton.setOnAction((ActionEvent event)
                 -> {
+            trackHistory.add(trackIndex);
+            System.out.println(trackHistory);
+            previousButton.setDisable(false);
             System.out.println("next track");
-            if (trackIndex < 9) {
-                trackIndex++;
+            if (shuffleCb.isSelected()) {
+                Random random = new Random();
+                trackIndex = random.nextInt(10);
             } else {
-                trackIndex = 0;
+                if (trackIndex < tracks.length - 1) {
+                    trackIndex++;
+                } else {
+                    trackIndex = 0;
+                }
             }
             createMediaPlayer();
             togglePlayer();
 
         });
-        
+
         previousButton.setOnAction((ActionEvent event)
                 -> {
             System.out.println("previous track");
-            if (trackIndex > 0) {
-                trackIndex--;
-            } else {
-                trackIndex = 9;
-            }
+            trackIndex = trackHistory.get(trackHistory.size() - 1);
+            trackHistory.remove(trackHistory.size() - 1);
+            if(trackHistory.size() == 0) previousButton.setDisable(true);
             createMediaPlayer();
             togglePlayer();
         });
@@ -151,7 +168,7 @@ public class MusicPlayerFX extends Application {
         trackName.setFont(Font.font("Tahoma", 15));
         title.setMinHeight(70);
         trackName.setTextFill(Color.ORANGE);
-        title.setTextFill(Color.BLUE);
+        title.setTextFill(Color.WHITE);
         trackName.setBackground(new Background(
                 new BackgroundFill(
                         Color.color(
@@ -163,6 +180,7 @@ public class MusicPlayerFX extends Application {
         volumeLabel.setTextFill(Color.WHITE);
         HBox hbButtons = new HBox();
         HBox hbVolumeButtons = new HBox();
+        HBox hbCheckBoxes = new HBox();
         hbButtons.setSpacing(10.0);
         hbButtons.setPadding(new Insets(20, 0, 20, 0));
         hbButtons.getChildren().addAll(playButton, previousButton, nextButton);
@@ -170,14 +188,22 @@ public class MusicPlayerFX extends Application {
         hbVolumeButtons.setPadding(new Insets(5, 0, 0, 0));
         hbVolumeButtons.setAlignment(Pos.CENTER);
         hbVolumeButtons.getChildren().addAll(volumeDownButton, volumeUpButton);
+        hbCheckBoxes.setSpacing(10.0);
+        hbCheckBoxes.setPadding(new Insets(5, 0, 0, 0));
+        hbCheckBoxes.setAlignment(Pos.CENTER);
+        hbCheckBoxes.getChildren().addAll(autoplayCb, shuffleCb);
+        autoplayCb.setTextFill(Color.WHITE);
+        shuffleCb.setTextFill(Color.WHITE);
         timeSlider.setPadding(new Insets(5, 0, 0, 0));
+        hbCheckBoxes.setPadding(new Insets(0, 0, 15, 0));
         grid.add(title, 1, 0);
         grid.add(trackName, 1, 1);
         grid.add(timeSlider, 1, 2);
         grid.add(hbButtons, 1, 3);
-        grid.add(volumeLabel, 1, 4);
-        grid.add(hbVolumeButtons, 1, 5);
-        Scene scene = new Scene(grid, 300, 250);
+        grid.add(hbCheckBoxes, 1, 4);
+        grid.add(volumeLabel, 1, 5);
+        grid.add(hbVolumeButtons, 1, 6);
+        Scene scene = new Scene(grid, 300, 300);
         primaryStage.setTitle("Music player");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -198,16 +224,26 @@ public class MusicPlayerFX extends Application {
         });
         mediaPlayer.currentTimeProperty().addListener(c -> {
             timeSlider.setValue(mediaPlayer.getCurrentTime().toSeconds());
+            if (mediaPlayer.getCurrentTime().toSeconds() == sound.getDuration().toSeconds()) {
+                if(autoplayCb.isSelected()) {
+                    nextButton.fire();
+                } else {
+                    mediaPlayer.seek(Duration.seconds(0));
+                        playButton.setText("play");
+                        playButton.setGraphic(playView);
+                }
+            }
         });
     }
 
     public void togglePlayer() {
-        System.out.println("playing..");
         try {
             if (isPlaying) {
                 mediaPlayer.play();
+                System.out.println("playing..");
             } else {
                 mediaPlayer.pause();
+                System.out.println("paused");
             }
         } catch (Exception e) {
             e.printStackTrace();

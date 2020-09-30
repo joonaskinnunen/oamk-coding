@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\bin\Debug\CalculatorStatic.exe.config
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\bin\Debug\CalculatorStatic.exe
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\bin\Debug\CalculatorStatic.pdb
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.Form1.resources
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.exe
+C:\Users\Joonas Kinnunen\source\repos\CalculatorStatic\CalculatorStatic\obj\Debug\CalculatorStatic.pdb

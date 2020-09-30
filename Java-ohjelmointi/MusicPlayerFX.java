@@ -12,22 +12,14 @@ import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.*;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
 import javafx.util.Duration;
 
 /**
@@ -40,18 +32,26 @@ public class MusicPlayerFX extends Application {
     String[] tracks = {"clip1.wav", "clip2.wav", "clip3.wav", "clip4.wav", "clip5.wav", "clip6.wav", "clip7.wav", "clip8.wav", "clip9.wav", "clip10.wav"};
     int trackIndex = 0;
     ArrayList<Integer> trackHistory = new ArrayList<>();
+    
     Media sound = new Media(new File("sounds/" + tracks[0]).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    
     Label trackNameLabel = new Label("Paused " + tracks[0]);
+    Label titleLabel = new Label("Music player");
+    Label volumeLabel = new Label("Volume: " + (int) Math.round(mediaPlayer.getVolume() * 100) + "%");
+    Label timeLabel = new Label();
+    
     Slider timeSlider = new Slider(0, 0, 0);
+    
     Button playButton = new Button("play");
     Button nextButton = new Button("next");
     Button previousButton = new Button("prev");
     Button volumeDownButton = new Button();
     Button volumeUpButton = new Button();
-    Label titleLabel = new Label("Music player");
-    Label volumeLabel = new Label("Volume: " + (int) Math.round(mediaPlayer.getVolume() * 100) + "%");
-    Label timeLabel = new Label();
+    
+    CheckBox autoplayCb = new CheckBox("autoplay");
+    CheckBox shuffleCb = new CheckBox("shuffle");
+
     Image vUpImg = new Image("https://i.ibb.co/X2W6L2Z/volumeup.png");
     ImageView vUpView = new ImageView(vUpImg);
     Image vDownImg = new Image("https://i.ibb.co/yPNX3JW/volumedown.png");
@@ -64,30 +64,9 @@ public class MusicPlayerFX extends Application {
     ImageView nextView = new ImageView(nextImg);
     Image prevImg = new Image("https://i.ibb.co/71QDqMx/previousbutton.png");
     ImageView prevView = new ImageView(prevImg);
-    CheckBox autoplayCb = new CheckBox("autoplay");
-    CheckBox shuffleCb = new CheckBox("shuffle");
 
     @Override
     public void start(Stage stage) throws Exception {
-        vUpView.setFitHeight(10);
-        vUpView.setPreserveRatio(true);
-        vDownView.setFitHeight(10);
-        vDownView.setPreserveRatio(true);
-        playView.setFitHeight(15);
-        playView.setPreserveRatio(true);
-        pauseView.setFitHeight(15);
-        pauseView.setPreserveRatio(true);
-        nextView.setFitHeight(15);
-        nextView.setPreserveRatio(true);
-        prevView.setFitHeight(15);
-        prevView.setPreserveRatio(true);
-        volumeUpButton.setGraphic(vUpView);
-        volumeDownButton.setGraphic(vDownView);
-        playButton.setGraphic(playView);
-        nextButton.setGraphic(nextView);
-        previousButton.setGraphic(prevView);
-        timeSlider.setMinWidth(200);
-        timeSlider.setMaxWidth(250);
         
         createMediaPlayer();
 
@@ -109,7 +88,6 @@ public class MusicPlayerFX extends Application {
                 mediaPlayer.setVolume(mediaPlayer.getVolume() - 0.1);
             }
             volumeLabel.setText("Volume: " + (int) Math.round(mediaPlayer.getVolume() * 100) + "%");
-
         });
 
         volumeUpButton.setOnAction((ActionEvent event)
@@ -123,13 +101,12 @@ public class MusicPlayerFX extends Application {
 
         nextButton.setOnAction((ActionEvent event)
                 -> {
-            trackHistory.add(trackIndex);
-            System.out.println(trackHistory);
-            previousButton.setDisable(false);
             System.out.println("next track");
+            trackHistory.add(trackIndex);
+            previousButton.setDisable(false);
             if (shuffleCb.isSelected()) {
                 Random random = new Random();
-                trackIndex = random.nextInt(10);
+                trackIndex = random.nextInt(tracks.length);
             } else {
                 if (trackIndex < tracks.length - 1) {
                     trackIndex++;
@@ -153,7 +130,30 @@ public class MusicPlayerFX extends Application {
             createMediaPlayer();
             togglePlayer();
         });
+        
+        vUpView.setFitHeight(10);
+        vDownView.setFitHeight(10);
+        playView.setFitHeight(15);
+        pauseView.setFitHeight(15);
+        nextView.setFitHeight(15);
+        prevView.setFitHeight(15);
 
+        vUpView.setPreserveRatio(true);
+        vDownView.setPreserveRatio(true);
+        playView.setPreserveRatio(true);
+        pauseView.setPreserveRatio(true);
+        nextView.setPreserveRatio(true);
+        prevView.setPreserveRatio(true);
+        
+        volumeUpButton.setGraphic(vUpView);
+        volumeDownButton.setGraphic(vDownView);
+        playButton.setGraphic(playView);
+        nextButton.setGraphic(nextView);
+        previousButton.setGraphic(prevView);
+        
+        timeSlider.setMinWidth(200);
+        timeSlider.setMaxWidth(250);
+        
         VBox vbox = new VBox();
         HBox hbButtons = new HBox();
         HBox hbVolumeButtons = new HBox();
@@ -202,7 +202,7 @@ public class MusicPlayerFX extends Application {
 
         vbox.getChildren().addAll(titleLabel, trackNameLabel, timeSlider, timeLabel, hbButtons, hbCheckBoxes, volumeLabel, hbVolumeButtons);
 
-        Scene scene = new Scene(vbox, 300, 300);
+        Scene scene = new Scene(vbox, 350, 350);
         stage.setTitle("Music player");
         stage.setScene(scene);
         stage.show();

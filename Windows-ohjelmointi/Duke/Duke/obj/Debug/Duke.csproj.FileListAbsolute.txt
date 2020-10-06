@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\bin\Debug\Duke.exe.config
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\bin\Debug\Duke.exe
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\bin\Debug\Duke.pdb
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.Form1.resources
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.exe
+C:\Users\Joonas Kinnunen\source\repos\Duke\Duke\obj\Debug\Duke.pdb

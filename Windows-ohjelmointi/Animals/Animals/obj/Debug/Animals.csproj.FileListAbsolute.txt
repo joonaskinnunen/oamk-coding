@@ -1,0 +1,10 @@
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.csprojAssemblyReference.cache
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.Form1.resources
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.Properties.Resources.resources
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.csproj.GenerateResource.cache
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.csproj.CoreCompileInputs.cache
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\bin\Debug\Animals.exe.config
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\bin\Debug\Animals.exe
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\bin\Debug\Animals.pdb
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.exe
+C:\Users\Joonas Kinnunen\source\repos\Animals\Animals\obj\Debug\Animals.pdb

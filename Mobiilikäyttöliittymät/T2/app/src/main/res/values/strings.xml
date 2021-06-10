@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Tehtava2</string>
+    <string name="btn_text">Klikkaa!</string>
+    <string name="input_hint">Syötä teksti</string>
+</resources>

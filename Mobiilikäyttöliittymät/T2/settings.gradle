@@ -1,0 +1,2 @@
+rootProject.name = "Tehtava2"
+include ':app'

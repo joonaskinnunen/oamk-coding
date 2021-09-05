@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SquareBallRectangle</string>
+    <string name="square">Neliö</string>
+    <string name="ball">Pallo</string>
+    <string name="triangle">Kolmio</string>
+    <string name="piece_of_cake">Pala kakkua</string>
+</resources>

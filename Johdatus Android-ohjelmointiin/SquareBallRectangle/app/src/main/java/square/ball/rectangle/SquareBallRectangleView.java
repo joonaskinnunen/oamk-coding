@@ -101,10 +101,11 @@ public class SquareBallRectangleView extends View
             int view_width  = getWidth() ;
             int view_height = getHeight() ;
 
-            RectF square_around_pie = new RectF( view_width / 2 + 40 - 80,
-                    view_height / 5 * 4 - 80,
-                    view_width / 2 + 40 + 80,
-                    view_height / 5 * 4 + 80 ) ;
+            RectF square_around_pie = new RectF(
+                    view_center_point_x - 120,
+                    view_center_point_y - 120,
+                    view_center_point_x + 120,
+                    view_center_point_y + 120 ) ;
 
             canvas.drawArc( square_around_pie, 45,  90, true, filling_paint ) ;
             canvas.drawArc( square_around_pie, 45,  90, true, outline_paint ) ;

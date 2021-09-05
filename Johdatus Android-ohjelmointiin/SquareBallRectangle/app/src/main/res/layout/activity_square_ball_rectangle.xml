@@ -1,0 +1,29 @@
+<!--
+
+   activity_square_ball_rectangle.html
+
+   2013-02-13  File created by Kari Laitinen
+   2013-02-15  Last modification.
+
+   Notes:
+
+   It seems that you have to specify a zero layout_height when
+   you specify a layout_weight. With the layout_weight values 1,
+   the screen is divided by the two main Views.
+
+   To make the "center_horizontal" take an effect in the
+   ButtonGroup definition, layout_width had to be changed from
+   "fill_parent" to "wrap_content".
+
+
+   http://developer.android.com/guide/topics/ui/layout/linear.html
+
+ -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <square.ball.rectangle.SquareBallRectangleView android:id="@+id/square_ball_rectangle_view" android:layout_width="wrap_content" android:layout_height="0dp" android:layout_weight="1"/>
+    <RadioGroup android:id="@+id/shape_selection_buttons" android:layout_width="wrap_content" android:layout_height="0dp" android:layout_gravity="center_horizontal" android:layout_weight="1">
+        <RadioButton android:id="@+id/radio_button_square" android:layout_width="fill_parent" android:layout_height="wrap_content" android:checked="true" android:onClick="square_shape_selected" android:text="Square"/>
+        <RadioButton android:id="@+id/radio_button_ball" android:layout_width="fill_parent" android:layout_height="wrap_content" android:onClick="ball_shape_selected" android:text="Ball"/>
+        <RadioButton android:id="@+id/radio_button_triangle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:onClick="triangle_shape_selected" android:text="Triangle"/>
+    </RadioGroup>
+</LinearLayout>

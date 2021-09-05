@@ -92,6 +92,24 @@ public class SquareBallRectangleView extends View
             triangle_path.close() ;
 
         }
+
+        else if ( shape_to_draw.equals( "Piece of Cake" ) )
+        {
+            filling_paint.setColor( Color.GREEN ) ;
+            outline_paint.setColor( Color.BLACK ) ;
+
+            int view_width  = getWidth() ;
+            int view_height = getHeight() ;
+
+            RectF square_around_pie = new RectF( view_width / 2 + 40 - 80,
+                    view_height / 5 * 4 - 80,
+                    view_width / 2 + 40 + 80,
+                    view_height / 5 * 4 + 80 ) ;
+
+            canvas.drawArc( square_around_pie, 45,  90, true, filling_paint ) ;
+            canvas.drawArc( square_around_pie, 45,  90, true, outline_paint ) ;
+
+        }
     }
 }
 

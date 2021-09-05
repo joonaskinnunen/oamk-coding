@@ -56,4 +56,9 @@ public class SquareBallRectangleActivity extends Activity
     {
         square_ball_rectangle_view.set_shape_to_draw( "Triangle" ) ;
     }
+
+    public void piece_of_cake_shape_selected( View view )
+    {
+        square_ball_rectangle_view.set_shape_to_draw( "Piece of Cake" ) ;
+    }
 }
